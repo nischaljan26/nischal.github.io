@@ -8,19 +8,59 @@ import Skills from "./components/Skills"
 import Interests from "./components/Interests"
 import MyProjects from "./components/MyProjects"
 import AddMe from "./components/AddMe"
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 
 
 function App() {
+    const [firstName, setfirstName] = useState('')
+    const [lastName, setlastName] = useState('')
+    const [DP, setDp] = useState('')
+    const [street, setstreet] = useState('')
+    const [address, setaddress] = useState('')
+    const [shortInfo, setshortInfo] = useState('')
+    const [contactQR, setcontactQR] = useState('')
+    const [CV, setCV] = useState('')
+    const [interest, setinterest] = useState('')
+    const url = 'http://127.0.0.1:8000/api/portfolio/about/'
+    useEffect(() => {
+        const fetchAbout = async () => {
+            const result = await axios(url)
+            const obj = result.data[0]
+            setfirstName(obj.first_name);
+            setlastName(obj.last_name);
+            setDp(obj.dp);
+            setstreet(obj.address_street);
+            setaddress(obj.full_address);
+            setshortInfo(obj.short_description);
+            setCV(obj.cv);
+            setcontactQR(obj.contact_qr);
+            setinterest(obj.interests);
+        }
+        fetchAbout()
+      }, [])
   return (
     <Router>
-      <Navbar/>
+      <Navbar contactQr={contactQR} dp={DP} cv={CV}/>
       <div className="container-fluid p-0">
-        <Route path = "/" exact component={About} />
+        <Route path = "/" 
+        exact 
+        component={() => 
+        <About 
+        DP={DP}
+        firstName={firstName}
+        lastName={lastName}
+        street={street}
+        address={address}
+        shortInfo={shortInfo}
+        />
+        }        
+        />
         <Route path = "/experience" component={Experience} />
         <Route path = "/education" component={Education} />
         <Route path = "/addme" component={AddMe} />
         <Route path = "/my-projects" component={MyProjects} />
-        <Route path = "/interests" component={Interests} />
+        <Route path = "/interests" component={() => <Interests interest={interest}/>} />
         <Route path = "/skills" component={Skills} />
       </div>
     </Router>
