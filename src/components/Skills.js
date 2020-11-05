@@ -21,7 +21,7 @@ const Skills = () => {
                     <div className="subheading mb-3">Programming Languages & Creative Tools</div>
                     <div className="row">
                     {skills.map((skill, key) => (
-                        <div className="col-12 col-md-6 col-lg-6">
+                        <div className="col-11 col-md-5 col-lg-5 m-2">
                             <div className='row text-dark'>
                                 <div className='col-2 ml-2'>
                                     {Parser(skill.iframe)}
