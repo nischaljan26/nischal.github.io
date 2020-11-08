@@ -24,8 +24,16 @@ const MyProjects = () => {
                                 <div>{Parser(project.short_info)}</div>
                                 <div className="">{Parser(project.short_desc)}</div>
                                 <div className="">{Parser(project.remarks)}</div>
-                                <div className='mt-4'><a href={project.project_link} target='_blank' rel="noreferrer" className='btn btn-primary'>View Project</a></div>
-                                <div className="">Hosted on: {project.hosted_on}</div>
+                                {project.project_link !== null ? 
+                                <div>
+                                    <div className='mt-4'>
+                                        <a href={project.project_link} target='_blank' rel="noreferrer" className='btn btn-primary'>View Project</a>
+                                    </div>
+                                    <div className="">
+                                        Hosted on: {project.hosted_on}
+                                    </div>
+                                </div>
+                                : ''}
                             </div>
                             {/*  <!-- <div className="flex-shrink-0"><span className="text-primary">Sept/Oct 2019 - Sept 2023</span></div> -->*/}
                         </div>
