@@ -2,13 +2,17 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Parser from 'html-react-parser';
+import loading from '../assets/loading.gif';
+
 
 const Experience = ({expRemark}) => {
     const [items, setItems] = useState([])
+    const [isloading, setisLoading] = useState(true)
     useEffect(() => {
         const fetchIcons = async () => {
             const result = await axios('experiences')
             setItems(result.data)
+            setisLoading(false)
         }
         fetchIcons()
       }, [])
@@ -17,7 +21,8 @@ const Experience = ({expRemark}) => {
             <section className="resume-section" id="experience">
                 <div className="resume-section-content">
                     <a href='#experience' className='js-scroll-trigger'><h2 className="mb-5">Experience</h2></a>
-                    {items.map(item => (
+                    {isloading?<img src={loading} alt='Loading...' width='200px'/>:
+                    items.map(item => (
                         <div key = {item.id}>
                             <div className="d-flex flex-column flex-md-row justify-content-between">
                                 <div className="flex-grow-1">

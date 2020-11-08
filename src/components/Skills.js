@@ -2,13 +2,16 @@ import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import Parser from 'html-react-parser';
+import loading from '../assets/loading.gif';
 
 const Skills = () => {
     const [skills, setSkills] = useState([])
+    const [isloading, setisLoading] = useState(true)
     useEffect(() => {
         const fetchEducations = async () => { 
             const result = await axios('skills')
             setSkills(result.data)
+            setisLoading(false)
         }
         fetchEducations()
       }, [])
@@ -19,7 +22,8 @@ const Skills = () => {
                     <a href='#skills' className='js-scroll-trigger'><h2 className="mb-5">Skills</h2></a>
                     <div className="subheading mb-3">Programming Languages & Creative Tools</div>
                     <div className="row">
-                    {skills.map((skill) => (
+                    {isloading?<img src={loading} alt='Loading...' width='200px'/>:
+                    skills.map((skill) => (
                         <div className="col-11 col-md-5 col-lg-5 m-2" key={skill.id}>
                             <div className='row text-dark'>
                                 <div className='col-2 ml-2'>

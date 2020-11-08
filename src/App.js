@@ -23,6 +23,7 @@ function App() {
     const [CV, setCV] = useState('')
     const [interest, setinterest] = useState('')
     const [expRemark, setExpRemark] = useState('')
+    const [isloading, setisLoading] = useState(true)
     
     useEffect(() => {
         const fetchAbout = async () => {
@@ -39,6 +40,7 @@ function App() {
               setcontactQR(obj.contact_qr);
               setinterest(obj.interests);
               setExpRemark(obj.experience_remarks);
+              setisLoading(false);
             } catch (error) {
               console.log(error)
             }
@@ -53,6 +55,7 @@ function App() {
         exact 
         component={() => 
         <About 
+        isloading={isloading}
         DP={DP}
         firstName={firstName}
         lastName={lastName}

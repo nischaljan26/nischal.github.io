@@ -1,13 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import loading from '../assets/loading.gif';
 
 const Education = () => {
     const [educations, setEducations] = useState([])
+    const [isloading, setisLoading] = useState(true)
     useEffect(() => {
         const fetchEducations = async () => {
             const result = await axios('educations')
             setEducations(result.data)
+            setisLoading(false)
         }
         fetchEducations()
       }, [])
@@ -16,7 +19,8 @@ const Education = () => {
             <section className="resume-section" id="education">
                 <div className="resume-section-content">
                     <a href='#education' className='js-scroll-trigger'><h2 className="mb-5">Education</h2></a>
-                    {educations.map((education) => (
+                    {isloading?<img src={loading} alt='Loading...' width='200px'/>:
+                    educations.map((education) => (
                         <div className="d-flex flex-column flex-md-row justify-content-between mb-5" key={education.id}>
                             <div className="flex-grow-1">
                                 <h3 className="mb-0">{education.academy}</h3>
