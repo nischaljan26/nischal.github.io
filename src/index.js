@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/portfolio/';
+axios.defaults.baseURL = 'https://nischalstha9.pythonanywhere.com/api/portfolio/';
 
 ReactDOM.render(
   <React.StrictMode>
