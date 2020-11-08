@@ -18,12 +18,12 @@ const Experience = ({expRemark}) => {
                 <div className="resume-section-content">
                     <a href='#experience' className='js-scroll-trigger'><h2 className="mb-5">Experience</h2></a>
                     {items.map(item => (
-                        <div>
+                        <div key = {item.id}>
                             <div className="d-flex flex-column flex-md-row justify-content-between">
                                 <div className="flex-grow-1">
                                     <h3 className="mb-0">{item.title}</h3>
                                     <div className="subheading mb-3">
-                                        <a target="_blank" href={item.worked_organization_url}>{item.worked_organization}</a>
+                                        <a target="_blank" rel='noreferrer' href={item.worked_organization_url}>{item.worked_organization}</a>
                                     </div>
                                     <p>
                                         {item.short_info}

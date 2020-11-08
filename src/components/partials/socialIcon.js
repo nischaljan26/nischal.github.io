@@ -7,8 +7,7 @@ const SocialIcon = () => {
     const [icons, setIcons] = useState([])
     useEffect(() => {
         const fetchIcons = async () => {
-            const url = 'http://127.0.0.1:8000/api/portfolio/social-icons/'
-            const result = await axios(url)
+            const result = await axios('social-icons')
             setIcons(result.data)
         }
         fetchIcons()
@@ -18,8 +17,8 @@ const SocialIcon = () => {
             <table className='table col-4 table-borderless'>
                 <tbody>
                     <tr>
-                    {icons.map((icon, key) => (
-                        <td>
+                    {icons.map((icon) => (
+                        <td key={icon.id}>
                             <a className="social-icon" target='_blank' href={icon.link}>
                                 {Parser(icon.fas_iframe)}
                             </a>

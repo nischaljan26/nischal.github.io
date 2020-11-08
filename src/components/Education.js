@@ -16,8 +16,8 @@ const Education = () => {
             <section className="resume-section" id="education">
                 <div className="resume-section-content">
                     <a href='#education' className='js-scroll-trigger'><h2 className="mb-5">Education</h2></a>
-                    {educations.map((education, key) => (
-                        <div className="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    {educations.map((education) => (
+                        <div className="d-flex flex-column flex-md-row justify-content-between mb-5" key={education.id}>
                             <div className="flex-grow-1">
                                 <h3 className="mb-0">{education.academy}</h3>
                                 <div className="subheading mb-3">{education.faculty}</div>
