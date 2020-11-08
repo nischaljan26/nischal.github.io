@@ -1,14 +1,14 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const Navbar = ({contactQr, dp, cv}) => {
+const Navbar = ({contactQr, dp, cv, firstName, lastName}) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
                 <NavLink className="navbar-brand" to="/">
                     <span className="d-sm-block d-md-block d-lg-none">
                         <img className="img-fluid img-profile rounded-circle mb-2 mr-2" style={{maxWidth: '40px'}} src={dp} alt="err" />
-                        Nischal Shrestha
+                        {firstName} {lastName}
                     </span>
                     <span className="d-none d-lg-block"><img className="img-fluid img-profile rounded-circle mx-auto mb-2" src={dp} alt="" /></span>
                 </NavLink>

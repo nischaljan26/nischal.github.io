@@ -1,13 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import Parser from 'html-react-parser';
 
 const MyProjects = () => {
     const [projects, setProjects] = useState([])
     useEffect(() => {
         const fetchEducations = async () => {
-            const url = 'http://127.0.0.1:8000/api/portfolio/projects/'  
-            const result = await axios(url)
+            const result = await axios('projects')
             setProjects(result.data)
         }
         fetchEducations()
@@ -21,9 +21,9 @@ const MyProjects = () => {
                         <div className="d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div className="flex-grow-1">
                                 <h3 className="mb-0">{project.name}</h3>
-                                <div>{project.short_info}</div>
-                                <div className="">{project.short_desc}</div>
-                                <div className="">{project.remarks}</div>
+                                <div>{Parser(project.short_info)}</div>
+                                <div className="">{Parser(project.short_desc)}</div>
+                                <div className="">{Parser(project.remarks)}</div>
                                 <div className='mt-4'><a href={project.project_link} target='_blank' rel="noreferrer" className='btn btn-primary'>View Project</a></div>
                                 <div className="">Hosted on: {project.hosted_on}</div>
                             </div>

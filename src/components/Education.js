@@ -6,8 +6,7 @@ const Education = () => {
     const [educations, setEducations] = useState([])
     useEffect(() => {
         const fetchEducations = async () => {
-            const url = 'http://127.0.0.1:8000/api/portfolio/educations/'  
-            const result = await axios(url)
+            const result = await axios('educations')
             setEducations(result.data)
         }
         fetchEducations()

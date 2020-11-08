@@ -22,26 +22,32 @@ function App() {
     const [contactQR, setcontactQR] = useState('')
     const [CV, setCV] = useState('')
     const [interest, setinterest] = useState('')
-    const url = 'http://127.0.0.1:8000/api/portfolio/about/'
+    const [expRemark, setExpRemark] = useState('')
+    
     useEffect(() => {
         const fetchAbout = async () => {
-            const result = await axios(url)
+            const result = await axios('about')
             const obj = result.data[0]
-            setfirstName(obj.first_name);
-            setlastName(obj.last_name);
-            setDp(obj.dp);
-            setstreet(obj.address_street);
-            setaddress(obj.full_address);
-            setshortInfo(obj.short_description);
-            setCV(obj.cv);
-            setcontactQR(obj.contact_qr);
-            setinterest(obj.interests);
+            try {
+              setfirstName(obj.first_name);
+              setlastName(obj.last_name);
+              setDp(obj.dp);
+              setstreet(obj.address_street);
+              setaddress(obj.full_address);
+              setshortInfo(obj.short_description);
+              setCV(obj.cv);
+              setcontactQR(obj.contact_qr);
+              setinterest(obj.interests);
+              setExpRemark(obj.experience_remarks);
+            } catch (error) {
+              console.log(error)
+            }
         }
         fetchAbout()
       }, [])
   return (
     <Router>
-      <Navbar contactQr={contactQR} dp={DP} cv={CV}/>
+      <Navbar contactQr={contactQR} dp={DP} cv={CV} firstName={firstName} lastName={lastName}/>
       <div className="container-fluid p-0">
         <Route path = "/" 
         exact 
@@ -56,9 +62,9 @@ function App() {
         />
         }        
         />
-        <Route path = "/experience" component={Experience} />
+        <Route path = "/experience" component={()=><Experience expRemark={expRemark}/>} />
         <Route path = "/education" component={Education} />
-        <Route path = "/addme" component={AddMe} />
+        <Route path = "/addme" component={() => <AddMe contactQr={contactQR} />} />
         <Route path = "/my-projects" component={MyProjects} />
         <Route path = "/interests" component={() => <Interests interest={interest}/>} />
         <Route path = "/skills" component={Skills} />

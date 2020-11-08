@@ -1,13 +1,13 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import Parser from 'html-react-parser';
 
-const Experience = () => {
+const Experience = ({expRemark}) => {
     const [items, setItems] = useState([])
     useEffect(() => {
         const fetchIcons = async () => {
-            const url = 'http://127.0.0.1:8000/api/portfolio/experiences/'  
-            const result = await axios(url)
+            const result = await axios('experiences')
             setItems(result.data)
         }
         fetchIcons()
@@ -23,7 +23,7 @@ const Experience = () => {
                                 <div className="flex-grow-1">
                                     <h3 className="mb-0">{item.title}</h3>
                                     <div className="subheading mb-3">
-                                        <a target="_blank" href="https://www.ittrainingnepal.com/">{item.worked_organization}</a>
+                                        <a target="_blank" href={item.worked_organization_url}>{item.worked_organization}</a>
                                     </div>
                                     <p>
                                         {item.short_info}
@@ -38,8 +38,7 @@ const Experience = () => {
                     ))}
                     <div className="d-flex flex-column flex-md-row justify-content-between">
                         <div className="flex-grow-1">
-                            <p>As I have just passed my Diploma and currently been involved in fulfilling my Bachelor in Computer Application I have not been employed in any IT related sector excluding a shop and Kalimati Vegetable Market between free time of my Diploma and Bachelors.</p>
-                            <p>Now as per my interest I am seeking to get employed in an organization where I can make my hobby my dream job collaborating with colleagues and learning much more in this sector from my seniors.</p>
+                            {Parser(expRemark)}
                         </div>
                     </div>
 

@@ -6,9 +6,8 @@ import Parser from 'html-react-parser';
 const Skills = () => {
     const [skills, setSkills] = useState([])
     useEffect(() => {
-        const fetchEducations = async () => {
-            const url = 'http://127.0.0.1:8000/api/portfolio/skills/'  
-            const result = await axios(url)
+        const fetchEducations = async () => { 
+            const result = await axios('skills')
             setSkills(result.data)
         }
         fetchEducations()
@@ -34,6 +33,7 @@ const Skills = () => {
                     ))}
 
                     </div>
+                    <hr/>
                     <div className="subheading mb-3">Workflow</div>
                     <ul className="fa-ul mb-0">
                         <li>
