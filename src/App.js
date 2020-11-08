@@ -10,6 +10,7 @@ import MyProjects from "./components/MyProjects"
 import AddMe from "./components/AddMe"
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import loading from './assets/loading.gif';
 
 
 function App() {
@@ -48,22 +49,26 @@ function App() {
         fetchAbout()
       }, [])
   return (
+    isloading?
+    <div className='loading-home-container'>
+      <img src={loading} alt='Loading...' className='loading-home'/>
+    </div>
+    :
     <Router>
       <Navbar contactQr={contactQR} dp={DP} cv={CV} firstName={firstName} lastName={lastName}/>
       <div className="container-fluid p-0">
         <Route path = "/" 
         exact 
         component={() => 
-        <About 
-        isloading={isloading}
-        DP={DP}
-        firstName={firstName}
-        lastName={lastName}
-        street={street}
-        address={address}
-        shortInfo={shortInfo}
-        />
-        }        
+          <About
+          DP={DP}
+          firstName={firstName}
+          lastName={lastName}
+          street={street}
+          address={address}
+          shortInfo={shortInfo}
+          />
+          }        
         />
         <Route path = "/experience" component={()=><Experience expRemark={expRemark}/>} />
         <Route path = "/education" component={Education} />

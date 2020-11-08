@@ -1,10 +1,8 @@
 import React from 'react';
 import SocialIcon from './partials/socialIcon'
-import loading from '../assets/loading.gif';
 
-const About = ({DP, firstName, lastName, street, address, shortInfo, isloading}) => {
+const About = ({DP, firstName, lastName, street, address, shortInfo}) => {
     return (
-        isloading?<img src={loading} alt='Loading...'/>:
         <div>
             <section className="resume-section" id="about">
                 <div className="resume-section-content">

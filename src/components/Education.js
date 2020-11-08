@@ -28,7 +28,9 @@ const Education = () => {
                                 <div>{education.subject}</div>
                                 <p>{education.per_gpa}</p>
                             </div>
-                            <div className="flex-shrink-0"><span className="text-primary">{education.from_date} - {education.to_date}</span></div>
+                            <div className="flex-shrink-0">
+                                <span className="text-primary">{education.from_date} - {education.to_date}</span>
+                            </div>
                         </div>
                     ))}
                 </div>
