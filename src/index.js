@@ -1,15 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import axios from 'axios';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import axios from "axios";
 
-axios.defaults.baseURL = 'https://nischalstha9.pythonanywhere.com/api/portfolio/';
+// axios.defaults.baseURL =
+//   "https://nischalstha9.pythonanywhere.com/api/portfolio/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/portfolio/";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
