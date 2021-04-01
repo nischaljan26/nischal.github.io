@@ -10135,4 +10135,25 @@ section.resume-section .resume-section-content {
   }
 }
 
-.qrcontainer{text-align: center;}
+.qrcontainer{
+  text-align: center;
+}
+
+.loading-home-container{
+  width: 100%;
+  height: auto;
+  bottom: 0px;
+  top: 0px;
+  left: 0;
+  position: absolute;
+}
+
+.loading-home{
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}

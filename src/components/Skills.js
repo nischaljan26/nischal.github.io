@@ -1,44 +1,43 @@
 import React from 'react'
+import axios from 'axios'
+import {useState, useEffect} from 'react'
+import Parser from 'html-react-parser';
+import loading from '../assets/loading.gif';
 
 const Skills = () => {
+    const [skills, setSkills] = useState([])
+    const [isloading, setisLoading] = useState(true)
+    useEffect(() => {
+        const fetchEducations = async () => { 
+            const result = await axios('skills')
+            setSkills(result.data)
+            setisLoading(false)
+        }
+        fetchEducations()
+      }, [])
     return (
         <div>
             <section className="resume-section" id="skills">
                 <div className="resume-section-content">
                     <a href='#skills' className='js-scroll-trigger'><h2 className="mb-5">Skills</h2></a>
                     <div className="subheading mb-3">Programming Languages & Creative Tools</div>
-                    <table className="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td><i className="list-inline-item dev-icons fab fa-python"></i></td>
-                                <td>Python and Django</td>
-                                <td><i className="list-inline-item dev-icons fab fa-css3-alt"></i></td>
-                                <td>Intermediate CSS3 Skills</td>
-                            </tr>
-                            <tr>
-                                <td><i className="list-inline-item dev-icons fab fa-html5"></i></td>
-                                <td>Proficient HTML5 Skill working with Django</td>
-                                <td><i className="list-inline-item dev-icons fab fa-sass"></i></td>
-                                <td>Basic Sass Knowledge and Skill</td>
-                            </tr>
-                            <tr>
-                                <td><i className="list-inline-item dev-icons fab fa-wordpress"></i></td>
-                                <td>Wordpress Skills</td>
-                                <td><i className="list-inline-item dev-icons fab fa-adobe"></i></td>
-                                <td>Proficient Knowledge of Adobe Photoshop and Illustrator</td>
-                            </tr>
-                            <tr>
-                                <td><i className="list-inline-item dev-icons fab fa-js-square"></i></td>
-                                <td>Basic Javascript Knowledge</td>
-                                <td><i className="list-inline-item dev-icons fab fa-npm"></i></td>
-                                <td>Node Package Manager</td>
-                            </tr>
-                            <tr>
-                                <td><i className="list-inline-item dev-icons fab fa-github"></i></td>
-                                <td>Version Control with Github</td>
-                            </tr>                             
-                        </tbody>
-                      </table>
+                    <div className="row">
+                    {isloading?<img src={loading} alt='Loading...' width='200px'/>:
+                    skills.map((skill) => (
+                        <div className="col-11 col-md-5 col-lg-5 m-2" key={skill.id}>
+                            <div className='row text-dark'>
+                                <div className='col-2 ml-2'>
+                                    {Parser(skill.iframe)}
+                                </div>
+                                <div className='col-9 py-2'>
+                                    {skill.title}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                    </div>
+                    <hr/>
                     <div className="subheading mb-3">Workflow</div>
                     <ul className="fa-ul mb-0">
                         <li>
