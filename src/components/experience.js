@@ -39,7 +39,7 @@ const Experience = ({ expRemark }) => {
                         {item.worked_organization}
                       </a>
                     </div>
-                    <p>{Parser(item.short_info)}</p>
+                    <div>{Parser(item.short_info)}</div>
                   </div>
                   <div className="flex-shrink-0">
                     <span className="text-primary">

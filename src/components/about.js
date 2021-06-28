@@ -2,7 +2,15 @@ import React from "react";
 import SocialIcon from "./partials/socialIcon";
 import Parser from "html-react-parser";
 
-const About = ({ DP, firstName, lastName, street, address, shortInfo }) => {
+const About = ({
+  DP,
+  firstName,
+  lastName,
+  street,
+  address,
+  shortInfo,
+  contacts,
+}) => {
   return (
     <div>
       <section className="resume-section" id="about">
@@ -22,10 +30,11 @@ const About = ({ DP, firstName, lastName, street, address, shortInfo }) => {
           </div>
           <div className="subheading mb-5">
             {street} · {address} <br />
-            {/* (+977) 9843481901 · 9810374388<br/> */}
             <a href="mailto:nischalstha9@gmail.com">nischalstha9@gmail.com</a>
+            <br />
+            {contacts.join(" · ")}
           </div>
-          <p className="lead mb-5">{Parser(shortInfo)}</p>
+          <div className="lead mb-5">{Parser(shortInfo)}</div>
           <SocialIcon />
         </div>
       </section>

@@ -5,7 +5,6 @@ import axios from "axios";
 
 axios.defaults.baseURL =
   "https://nischalstha9.pythonanywhere.com/api/portfolio/";
-// axios.defaults.baseURL = "http://127.0.0.1:8000/api/portfolio/";
 
 ReactDOM.render(
   <React.StrictMode>

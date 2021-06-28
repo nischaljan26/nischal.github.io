@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ contactQr, dp, cv, firstName, lastName }) => {
+const Navbar = ({ dp, cv, firstName, lastName }) => {
   return (
     <div>
       <nav

@@ -7,6 +7,7 @@ const AddMe = ({ contactQr }) => {
   var [Email, setEmail] = useState("");
   var [Message, setMessage] = useState("");
   const [alert, setAlert] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const sendMessage = (e) => {
     e.preventDefault();
     if (Name !== "" && Email !== "" && Message !== "") {
@@ -20,6 +21,7 @@ const AddMe = ({ contactQr }) => {
           setAlert("");
           document.getElementById("message-form").reset();
           setAlert("Message Sent Successfuly!");
+          setFormSubmitted(true);
         })
         .catch((err) => {
           setAlert("");
@@ -59,58 +61,62 @@ const AddMe = ({ contactQr }) => {
             ) : (
               ""
             )}
-            <form id="message-form" method="POST">
-              <div className="form-group">
-                <label className="text-dark" htmlFor="name">
-                  Name:
-                </label>
-                <input
-                  type="name"
-                  className="form-control"
-                  id="name"
-                  placeholder="Your Name Please"
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label className="text-dark" htmlFor="email">
-                  Email address:
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Your Email Please"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label className="text-dark" htmlFor="message">
-                  Message:
-                </label>
-                <textarea
-                  type="text"
-                  className="form-control"
-                  id="message"
-                  placeholder="Your Message Here"
-                  rows="5"
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                  }}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={(e) => sendMessage(e)}
-              >
-                Send Message
-              </button>
-            </form>
+            {formSubmitted === false ? (
+              <form id="message-form" method="POST">
+                <div className="form-group">
+                  <label className="text-dark" htmlFor="name">
+                    Name:
+                  </label>
+                  <input
+                    type="name"
+                    className="form-control"
+                    id="name"
+                    placeholder="Your Name Please"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-dark" htmlFor="email">
+                    Email address:
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Your Email Please"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-dark" htmlFor="message">
+                    Message:
+                  </label>
+                  <textarea
+                    type="text"
+                    className="form-control"
+                    id="message"
+                    placeholder="Your Message Here"
+                    rows="5"
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                    }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={(e) => sendMessage(e)}
+                >
+                  Send Message
+                </button>
+              </form>
+            ) : (
+              <>I have received your message.</>
+            )}
           </div>
           <div className="qrcontainer" style={{ padding: "0pt" }}>
             <h5 className="p-2">Scan me to add to your contacts.</h5>
