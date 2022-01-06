@@ -3,17 +3,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Parser from "html-react-parser";
 import loading from "../assets/loading.gif";
+import { useDispatch, useSelector } from "react-redux";
+import { set_experience } from "../redux/action";
 
 const Experience = ({ expRemark }) => {
+  const dispatch = useDispatch();
+
   const [items, setItems] = useState([]);
   const [isloading, setisLoading] = useState(true);
+  const fetchExperience = async () => {
+    const result = await axios("experiences");
+    setItems(result.data);
+    dispatch(set_experience(result.data));
+    setisLoading(false);
+  };
+  const cachedExperience = useSelector((state) => state.experience);
   useEffect(() => {
-    const fetchIcons = async () => {
-      const result = await axios("experiences");
-      setItems(result.data);
-      setisLoading(false);
-    };
-    fetchIcons();
+    if (cachedExperience == []) {
+      fetchExperience();
+    }
+    setItems(cachedExperience);
+    setisLoading(false);
   }, []);
   return (
     <div>
