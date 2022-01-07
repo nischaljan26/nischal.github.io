@@ -7,54 +7,28 @@ export const set_experience = (data) => {
   };
 };
 
-export const log_in = () => {
+export const set_social_icons = (data) => {
   return {
-    type: "TRUE",
+    type: constants.setSocialIcons,
+    payload: data,
   };
 };
 
-export const log_out = () => {
+export const set_education = (data) => {
   return {
-    type: "FALSE",
+    type: constants.setEducation,
+    payload: data,
   };
 };
-
-export const insert_token = (token) => {
+export const set_skills = (data) => {
   return {
-    type: "INSERT",
-    payload: token,
+    type: constants.setSkills,
+    payload: data,
   };
 };
-
-export const insert_user = (token) => {
+export const set_projects = (data) => {
   return {
-    type: "INSERT_USER",
-    payload: token,
-  };
-};
-export const insert_alert = (token) => {
-  return {
-    type: "INSERT_ALERT",
-    payload: token,
-  };
-};
-export const remove_alert = (token) => {
-  return {
-    type: "REMOVE_ALERT",
-    payload: token,
-  };
-};
-
-export const insert_books = (books) => {
-  return {
-    type: "INSERT_BOOKS",
-    payload: books,
-  };
-};
-
-export const remove_books = () => {
-  return {
-    type: "REMOVE_BOOKS",
-    payload: {},
+    type: constants.setProjects,
+    payload: data,
   };
 };

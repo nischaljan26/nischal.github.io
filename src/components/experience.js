@@ -8,21 +8,21 @@ import { set_experience } from "../redux/action";
 
 const Experience = ({ expRemark }) => {
   const dispatch = useDispatch();
-
   const [items, setItems] = useState([]);
   const [isloading, setisLoading] = useState(true);
   const fetchExperience = async () => {
     const result = await axios("experiences");
     setItems(result.data);
     dispatch(set_experience(result.data));
-    setisLoading(false);
   };
   const cachedExperience = useSelector((state) => state.experience);
+  // console.log(items, "NotCached");
   useEffect(() => {
-    if (cachedExperience == []) {
+    if (cachedExperience.length === 0) {
       fetchExperience();
+    } else {
+      setItems(cachedExperience);
     }
-    setItems(cachedExperience);
     setisLoading(false);
   }, []);
   return (

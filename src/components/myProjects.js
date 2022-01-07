@@ -3,17 +3,26 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Parser from "html-react-parser";
 import loading from "../assets/loading.gif";
+import { useDispatch, useSelector } from "react-redux";
+import { set_projects } from "../redux/action";
 
 const MyProjects = () => {
+  const dispatch = useDispatch();
+  const cachedProjects = useSelector((state) => state.projects);
   const [projects, setProjects] = useState([]);
   const [isloading, setisLoading] = useState(true);
+  const fetchEducations = async () => {
+    const result = await axios("projects");
+    setProjects(result.data);
+    dispatch(set_projects(result.data));
+  };
   useEffect(() => {
-    const fetchEducations = async () => {
-      const result = await axios("projects");
-      setProjects(result.data);
-      setisLoading(false);
-    };
-    fetchEducations();
+    if (cachedProjects.length === 0) {
+      fetchEducations();
+    } else {
+      setProjects(cachedProjects);
+    }
+    setisLoading(false);
   }, []);
   return (
     <div>
