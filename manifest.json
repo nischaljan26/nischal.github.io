@@ -1,0 +1,31 @@
+{
+    "short_name": "Nischal",
+    "name": "Nischal Shrestha",
+    "description": "Portfolio of Nischal Shrestha",
+    "icons": [
+      {
+        "src": "./favicon.ico",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./favicon.ico",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6",
+    "shortcuts": [
+      {
+        "name": "Want to know about me?",
+        "short_name": "About",
+        "description": "Want to know or contact me?",
+        "url": "/",
+        "icons": [{ "src": "/assets/favicon.ico", "sizes": "192x192" }]
+      }
+    ]
+  }
