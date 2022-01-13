@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+const closeNav = () => {
+  console.log("CLOSED");
+};
 const Navbar = ({ dp, cv, firstName, lastName }) => {
   return (
     <div>
@@ -45,6 +48,11 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 activeClassName="active"
                 exact
                 to="/"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 About
               </NavLink>
@@ -54,6 +62,11 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 className="nav-link"
                 activeClassName="active"
                 to="/experience"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 Experience
               </NavLink>
@@ -63,6 +76,11 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 className="nav-link"
                 activeClassName="active"
                 to="/education"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 Education
               </NavLink>
@@ -72,6 +90,11 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 className="nav-link"
                 activeClassName="active"
                 to="/skills"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 Skills
               </NavLink>
@@ -81,6 +104,11 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 className="nav-link"
                 activeClassName="active"
                 to="/interests"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 Interests
               </NavLink>
@@ -90,13 +118,26 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 className="nav-link"
                 activeClassName="active"
                 to="/my-projects"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 Projects
               </NavLink>
             </li>
             <span className="d-block">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/addme">
+                <NavLink
+                  className="nav-link"
+                  to="/addme"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
                   Contact Me
                 </NavLink>
               </li>
@@ -109,7 +150,7 @@ const Navbar = ({ dp, cv, firstName, lastName }) => {
                 rel="noreferrer"
                 href={cv}
               >
-                View My cv
+                View My CV
               </a>
             </li>
           </ul>
