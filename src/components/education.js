@@ -13,15 +13,18 @@ const Education = () => {
     const result = await axios("educations");
     setEducations(result.data);
     dispatch(set_education(result.data));
+    setisLoading(false);
   };
   const cachedEducation = useSelector((state) => state.education);
   useEffect(() => {
     if (cachedEducation.length === 0) {
-      fetchEducations();
+      fetchEducations().catch((err) => {
+        console.log(err);
+      });
     } else {
       setEducations(cachedEducation);
+      setisLoading(false);
     }
-    setisLoading(false);
   }, []);
   return (
     <div>

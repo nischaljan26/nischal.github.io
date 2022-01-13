@@ -15,14 +15,15 @@ const SocialIcon = () => {
     const result = await axios("social-icons");
     setIcons(result.data);
     dispatch(set_social_icons(result.data));
+    setisLoading(false);
   };
   useEffect(() => {
     if (cachedSocialIcons.length === 0) {
       fetchIcons();
     } else {
       setIcons(cachedSocialIcons);
+      setisLoading(false);
     }
-    setisLoading(false);
   }, []);
   return isloading ? (
     <img src={loading} alt="Loading..." width="200px" />

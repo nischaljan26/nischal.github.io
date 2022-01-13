@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
 import About from "./components/about";
 import Experience from "./components/experience";
@@ -25,28 +25,29 @@ function App() {
   const [expRemark, setExpRemark] = useState("");
   const [isloading, setisLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
+  const fetchAbout = async () => {
+    const result = await axios("about");
+    const obj = result.data[0];
+    try {
+      setfirstName(obj.first_name);
+      setlastName(obj.last_name);
+      setDp(obj.dp);
+      setstreet(obj.address_street);
+      setaddress(obj.full_address);
+      setshortInfo(obj.short_description);
+      setCV(obj.cv);
+      setcontactQR(obj.contact_qr);
+      setinterest(obj.interests);
+      setExpRemark(obj.experience_remarks);
+      setContacts(obj.contacts);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchAbout = async () => {
-      const result = await axios("about");
-      const obj = result.data[0];
-      try {
-        setfirstName(obj.first_name);
-        setlastName(obj.last_name);
-        setDp(obj.dp);
-        setstreet(obj.address_street);
-        setaddress(obj.full_address);
-        setshortInfo(obj.short_description);
-        setCV(obj.cv);
-        setcontactQR(obj.contact_qr);
-        setinterest(obj.interests);
-        setExpRemark(obj.experience_remarks);
-        setisLoading(false);
-        setContacts(obj.contacts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchAbout();
   }, []);
   return isloading ? (

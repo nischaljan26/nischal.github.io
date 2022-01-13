@@ -14,6 +14,7 @@ const Skills = () => {
     const result = await axios("skills");
     setSkills(result.data);
     dispatch(set_skills(result.data));
+    setisLoading(false);
   };
   const cachedSkills = useSelector((state) => state.skills);
   useEffect(() => {
@@ -21,8 +22,8 @@ const Skills = () => {
       fetchEducations();
     } else {
       setSkills(cachedSkills);
+      setisLoading(false);
     }
-    setisLoading(false);
   }, []);
   return (
     <div>

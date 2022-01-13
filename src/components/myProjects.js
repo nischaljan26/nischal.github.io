@@ -15,14 +15,15 @@ const MyProjects = () => {
     const result = await axios("projects");
     setProjects(result.data);
     dispatch(set_projects(result.data));
+    setisLoading(false);
   };
   useEffect(() => {
     if (cachedProjects.length === 0) {
       fetchEducations();
     } else {
       setProjects(cachedProjects);
+      setisLoading(false);
     }
-    setisLoading(false);
   }, []);
   return (
     <div>

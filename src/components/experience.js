@@ -14,6 +14,7 @@ const Experience = ({ expRemark }) => {
     const result = await axios("experiences");
     setItems(result.data);
     dispatch(set_experience(result.data));
+    setisLoading(false);
   };
   const cachedExperience = useSelector((state) => state.experience);
   // console.log(items, "NotCached");
@@ -22,8 +23,8 @@ const Experience = ({ expRemark }) => {
       fetchExperience();
     } else {
       setItems(cachedExperience);
+      setisLoading(false);
     }
-    setisLoading(false);
   }, []);
   return (
     <div>
